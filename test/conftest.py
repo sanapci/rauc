@@ -9,7 +9,7 @@ from pathlib import Path
 from random import Random
 
 import pytest
-from pydbus import SessionBus
+from dasbus.connection import SessionMessageBus
 
 from helper import run
 
@@ -364,7 +364,7 @@ def _rauc_dbus_service(tmp_path, conf_file, bootslot):
         env=env,
     )
 
-    bus = SessionBus()
+    bus = SessionMessageBus()
     proxy = None
 
     # Wait for de.pengutronix.rauc to appear on the bus
@@ -372,7 +372,7 @@ def _rauc_dbus_service(tmp_path, conf_file, bootslot):
     while True:
         time.sleep(0.1)
         try:
-            proxy = bus.get("de.pengutronix.rauc", "/")
+            proxy = bus.get_proxy("de.pengutronix.rauc", "/")
             break
         except Exception:
             if time.monotonic() > timeout:

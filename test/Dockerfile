@@ -29,7 +29,7 @@ RUN apt-get install -q -y --no-install-recommends \
   lcov \
   slirp \
   python3-pytest \
-  python3-pydbus \
+  python3-dasbus \
   python3-sphinx \
   python3-sphinx-rtd-theme \
   dbus \
